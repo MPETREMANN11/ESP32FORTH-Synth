@@ -1,2 +1,9 @@
 # ESP32FORTH-Synth
-Create and manage a synthesizer using ESP32 and programmed with ESP32forth.
+<h1>The SYNTH project</h1>
+<p>This ambitious project is an attempt to program a musical synthesizer by exploiting hardware and software components:</p>
+<ul>
+  <li>the ESP32 board</li>
+  <li>the stereo DAC card</li>
+  <li>the FORTH language with ESP32forth version 7.0.7.21a</li>
+</ul>
+
