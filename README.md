@@ -6,4 +6,4 @@
   <li>the stereo DAC card</li>
   <li>the FORTH language with ESP32forth version 7.0.7.21a</li>
 </ul>
-
+<img src="bannerESP32synth.jpg"/>
