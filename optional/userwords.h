@@ -2,7 +2,7 @@
 Connect ESP32forth to ESP32synth library
    Filename:      userwords.h
    Date:          23 jan 2026
-   Updated:       27 jan 2026
+   Updated:       28 jan 2026
    File Version:  1.0
    MCU:           ESP32-S3 | ESP32 WROOM
    Forth:         ESP32forth all versions 7.0.7.21+
@@ -158,7 +158,34 @@ Connect ESP32forth to ESP32synth library
   X("synth.setVibrato", SYNTH_SETVIB, synth.setVibrato(static_cast<uint8_t>(n0), static_cast<uint32_t>(n1), static_cast<uint32_t>(n2)); DROPn(3)) \
   X("synth.setTremolo", SYNTH_SETTREM, synth.setTremolo(static_cast<uint8_t>(n0), static_cast<uint32_t>(n1), static_cast<uint16_t>(n2)); DROPn(3)) \
   X("synth.setWavetable", SYNTH_SETWT, synth.setWavetable(static_cast<uint8_t>(n0), reinterpret_cast<const void*>(n1), \
-    static_cast<uint32_t>(n2), static_cast<BitDepth>(n3)); DROPn(4))
+    static_cast<uint32_t>(n2), static_cast<BitDepth>(n3)); DROPn(4)) \
+  X("synth.setInstrument", SYNTH_SETINST, synth.setInstrument(static_cast<uint8_t>(n1), reinterpret_cast<Instrument*>(n0)); DROPn(2)) \
+  X("synth.detachWave", SYNTH_DETACHWAVE, synth.detachWave(static_cast<uint8_t>(n0), static_cast<WaveType>(n1)); DROPn(2)) \
+  X("synth.detachInstrumentAndSetWave", SYNTH_DET_INST_WAVE, synth.detachInstrumentAndSetWave(static_cast<uint8_t>(n0), static_cast<WaveType>(n1)); DROPn(2)) \
+  X("synth.registerWavetable", SYNTH_REGWT, synth.registerWavetable(static_cast<uint16_t>(n0), reinterpret_cast<const void*>(n1), \
+    static_cast<uint32_t>(n2), static_cast<BitDepth>(n3)); DROPn(4)) \
+  X("synth.setControlRateHz", SYNTH_SETCTRLRATE, synth.setControlRateHz(static_cast<uint16_t>(n0)); DROP) \
+  X("synth.slide", SYNTH_SLIDE, synth.slide(static_cast<uint8_t>(n0), static_cast<uint32_t>(n1), \
+    static_cast<uint32_t>(n2), static_cast<uint32_t>(n3)); DROPn(4)) \
+  X("synth.slideTo", SYNTH_SLIDETO, synth.slideTo(static_cast<uint8_t>(n0), static_cast<uint32_t>(n1), static_cast<uint32_t>(n2)); DROPn(3)) \
+  X("synth.getFrequencyCentiHz", SYNTH_GETFREQ, n0 = synth.getFrequencyCentiHz(static_cast<uint8_t>(n0))) \
+  X("synth.getVolume8Bit", SYNTH_GETVOL, n0 = synth.getVolume8Bit(static_cast<uint8_t>(n0))) \
+  X("synth.getEnv8Bit", SYNTH_GETENV, n0 = synth.getEnv8Bit(static_cast<uint8_t>(n0))) \
+  X("synth.getOutput8Bit", SYNTH_GETOUT, n0 = synth.getOutput8Bit(static_cast<uint8_t>(n0))) \
+  X("synth.getVolumeRaw", SYNTH_GETVOLRAW, n0 = synth.getVolumeRaw(static_cast<uint8_t>(n0))) \
+  X("synth.getEnvRaw", SYNTH_GETENVRAW, n0 = synth.getEnvRaw(static_cast<uint8_t>(n0))) \
+  X("synth.getOutputRaw", SYNTH_GETOUTRAW, n0 = synth.getOutputRaw(static_cast<uint8_t>(n0))) \
+  X("synth.render", SYNTH_RENDER, synth.renderLoop()) \
+  X("synth.isVoiceActive", SYNTH_ISACTIVE, n0 = (synth.isVoiceActive(static_cast<uint8_t>(n0)) ? -1 : 0)) \
+  X("synth.getChipModel", SYNTH_MODEL, PUSH reinterpret_cast<cell_t>(synth.getChipModel())) \
+  X("synth.getSampleRate", SYNTH_RATE, PUSH static_cast<cell_t>(synth.getSampleRate())) \
+  X("synth.detachArpeggio", SYNTH_DETACHARP, synth.detachArpeggio(static_cast<uint8_t>(n0)); DROP) \
+  /* Arpège : voix, durée, note1, note2, note3 */ \
+  X("synth.setArpeggio", SYNTH_SETARP3, synth.setArpeggio(static_cast<uint8_t>(n0), static_cast<uint16_t>(n1), static_cast<uint32_t>(n2), \
+    static_cast<uint32_t>(n3), static_cast<uint32_t>(n4)); DROPn(5)) \
+  X("synth.setMasterVolume", SYNTH_SETMVOL, synth.setMasterVolume(static_cast<uint8_t>(n0)); DROP) \
+  X("synth.getMasterVolume", SYNTH_GETMVOL, PUSH static_cast<cell_t>(synth.getMasterVolume()))
+
 
 
 
